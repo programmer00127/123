@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Профіль студента</title>
+    <style>
+        .honor { color: gold; font-weight: bold; }
+        .good { color: green; }
+        .average { color: orange; }
+    </style>
+</head>
+<body>
+    <h1>Профіль: {{ student_name }}</h1>
+    
+    <div class="info">
+        <p><strong>Вік:</strong> {{ age }} років</p>
+        <p><strong>Клас:</strong> {{ grade }}</p>
+        
+        *<!-- Умовна логіка для оцінки -->*
+        {% if average_score >= 4.5 %}
+            <p class="honor">Відмінник! Середній бал: {{ average_score }}</p>
+        {% elif average_score >= 4.0 %}
+            <p class="good">Хорошист! Середній бал: {{ average_score }}</p>
+        {% else %}
+            <p class="average">Середній бал: {{ average_score }}</p>
+        {% endif %}
+        
+        *<!-- Відображення предметів -->*
+        <h3>Предмети ({{ subjects|length }} шт.):</h3>
+        <ul>
+        {% for subject in subjects %}
+            <li>
+                {{ forloop.counter }}. {{ subject }}
+                {% if forloop.first %} ⭐ (Улюблений){% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

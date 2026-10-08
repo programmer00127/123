@@ -1,0 +1,69 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}Перевірка досвіду - TechBlog{% endblock %}
+
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <!-- Заголовок форми -->
+                <div class="card-header">
+                    <h2 class="text-center mb-0">Перевір свій досвід у програмуванні</h2>
+                </div>
+
+
+                <!-- Тіло форми -->
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="years" class="form-label">Скільки років ти програмуєш?</label>
+                            <input type="number" class="form-control" id="years" name="years" 
+                                   min="0" max="50" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Перевірити</button>
+                    </form>
+
+
+                    <!-- Відображення результату після відправки форми -->
+                    {% if years is not None %}
+                        <div class="mt-4 p-3 rounded">
+                            <h4>
+                                Твій досвід: {{ years }} 
+                                {% if years == 1 %}
+                                    рік
+                                {% elif years < 5 %}
+                                    роки
+                                {% else %}
+                                    років
+                                {% endif %}
+                            </h4>
+                            
+                            {% if years == 0 %}
+                                <div class="alert alert-info">
+                                    <strong>Новачок!</strong> Вітаємо з початком програмістської подорожі! 🎉
+                                </div>
+                            {% elif years <= 2 %}
+                                <div class="alert alert-success">
+                                    <strong>Junior Developer!</strong> Ти на правильному шляху! 💪
+                                </div>
+                            {% elif years <= 5 %}
+                                <div class="alert alert-warning">
+                                    <strong>Middle Developer!</strong> У тебе солідний досвід! 🚀
+                                </div>
+                            {% else %}
+                                <div class="alert alert-danger">
+                                    <strong>Senior Developer!</strong> Ти справжній професіонал! 👑
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

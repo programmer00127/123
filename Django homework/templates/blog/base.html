@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TechBlog{% endblock %}</title>
+    
+    *<!-- Глобальні стилі -->*
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    
+    *<!-- Стилі додатку blog -->*
+    <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+    
+    *<!-- Фавікон -->*
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{% url 'blog:home' %}">🏠 Головна</a></li>
+            <li><a href="{% url 'blog:popular' %}">📈 Популярне</a></li>
+            <li><a href="{% url 'blog:experience' %}">🎓 Досвід</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 TechBlog. Найкращі статті про технології та програмування!</p>
+    </footer>
+
+    *<!-- JavaScript файли -->*
+    <script src="{% static 'js/common.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

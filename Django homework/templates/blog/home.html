@@ -1,0 +1,56 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}
+    {{ blog_name }} - Головна
+{% endblock %}
+
+
+{% block content %}
+<!-- Герой-секція -->
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 mb-4">{{ blog_name }}</h1>
+        <p class="lead">{{ description }}</p>
+        <a href="{% url 'blog:popular' %}" class="btn btn-light btn-lg">Переглянути статті</a>
+    </div>
+</div>
+
+
+<!-- Основні категорії -->
+<div class="container my-5">
+    <div class="row">
+        <!-- Програмування -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>💻 Програмування</h3>
+                    <p>Вивчай найсучасніші мови програмування та фреймворки</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Штучний інтелект та ML -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>🤖 ШІ та ML</h3>
+                    <p>Дізнавайся про штучний інтелект та машинне навчання</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Веб-розробка -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3>🌐 Веб-розробка</h3>
+                    <p>Створюй сучасні веб-додатки та сайти</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
